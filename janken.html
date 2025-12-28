@@ -150,6 +150,7 @@
             "パー"
         ];
 
+        //チートモードでの背景変化
         cheat.addEventListener("change", () => {
         if (cheat.checked){
           document.body.classList.add("cheat-active");
@@ -169,6 +170,7 @@
                 else if (text.includes("パー")) {userHand = "パー";}
 
                 let cpuHand = "";
+
                 //チートモードの判定
                 if (cheat.checked){
                     if (userHand == "グー"){cpuHand = "チョキ";}
@@ -178,11 +180,11 @@
                     const random = Math.floor(Math.random() *3);
                     cpuHand = hands[random];}
                 
-                //メッセージ
                 let message ="";
-                
-                result.classList.remove("win", "lose", "draw");
 
+                result.classList.remove("win", "lose", "draw");
+                
+                //結果
                 if (userHand === cpuHand) {
                     message = `あなた:${userHand} 相手:${cpuHand} → あいこ!`;
                     result.classList.add("draw");
