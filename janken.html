@@ -160,11 +160,12 @@
                 else if (text.includes("チョキ")) {userHand = "チョキ";}
                 else if (text.includes("パー")) {userHand = "パー";}
 
+                let cpuHand = "";
                 //チートモードの判定
                 if (cheat.checked){
-                    if (userhand == "グー"){cpuHand = "チョキ";}
-                    else if (userhand == "チョキ"){cpuHand = "パー";}
-                    else if (userhand == "パー"){cpuHand = "グー";}
+                    if (userHand == "グー"){cpuHand = "チョキ";}
+                    else if (userHand == "チョキ"){cpuHand = "パー";}
+                    else if (userHand == "パー"){cpuHand = "グー";}
                 }else{
                     const random = Math.floor(Math.random() *3);
                     const cpuHand = hands[random];}
