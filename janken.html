@@ -140,11 +140,56 @@
   <p id="result"></p>
 
   <script>
-  // =========================================
-  //
-  // ここにじゃんけんゲームのロジックを実装してください
-  //
-  // =========================================
+    document.addEventListener('DOMContentLoaded', () =>{
+        const result = document.getElementById("result");
+        const buttons = document.querySelectorAll(".button-group button");
+        const cheat = document.getElementById("cheatMode");
+        const hands = [
+            "グー",
+            "チョキ",
+            "パー"
+        ];
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", (event) =>{
+
+                //ユーザの手
+                const text = event.target.textContent;
+                let userHand = "";
+                if (text.includes("グー")) {userHand = "グー";}
+                else if (text.includes("チョキ")) {userHand = "チョキ";}
+                else if (text.includes("パー")) {userHand = "パー";}
+
+                //チートモードの判定
+                if (cheat.checked){
+                    if (userhand == "グー"){cpuHand = "チョキ";}
+                    else if (userhand == "チョキ"){cpuHand = "パー";}
+                    else if (userhand == "パー"){cpuHand = "グー";}
+                }else{
+                    const random = Math.floor(Math.random() *3);
+                    const cpuHand = hands[random];}
+                
+                //メッセージ
+                let message ="";
+                
+                if (userHand === cpuHand) {
+                    message = `あなた:${userHand} 相手:${cpuHand} → あいこ!`;
+                } else if (
+                    (userHand === "グー" && cpuHand === "チョキ") ||
+                    (userHand === "チョキ" && cpuHand === "パー") ||
+                    (userHand === "パー" && cpuHand === "グー")
+                ) {
+                    message = `あなた:${userHand} 相手:${cpuHand} → あなたの勝ち!`;
+                } else {
+                    message = `あなた:${userHand} 相手:${cpuHand} → あなたの負け!`;
+                }
+
+                result.textContent = message;
+
+            });
+        
+        });
+    });
   </script>
 </body>
 </html>
