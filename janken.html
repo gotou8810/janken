@@ -150,6 +150,14 @@
             "パー"
         ];
 
+        cheat.addEventListener("change", () => {
+        if (cheat.checked){
+          document.body.classList.add("cheat-active");
+        }else{
+          document.body.classList.remove("cheat-active");
+        }
+        });
+
         buttons.forEach((button) => {
             button.addEventListener("click", (event) =>{
 
@@ -168,21 +176,27 @@
                     else if (userHand == "パー"){cpuHand = "グー";}
                 }else{
                     const random = Math.floor(Math.random() *3);
-                    const cpuHand = hands[random];}
+                    cpuHand = hands[random];}
                 
                 //メッセージ
                 let message ="";
                 
+                result.classList.remove("win", "lose", "draw");
+
                 if (userHand === cpuHand) {
                     message = `あなた:${userHand} 相手:${cpuHand} → あいこ!`;
+                    result.classList.add("draw");
                 } else if (
                     (userHand === "グー" && cpuHand === "チョキ") ||
                     (userHand === "チョキ" && cpuHand === "パー") ||
                     (userHand === "パー" && cpuHand === "グー")
                 ) {
                     message = `あなた:${userHand} 相手:${cpuHand} → あなたの勝ち!`;
+                    result.classList.add("win");
                 } else {
                     message = `あなた:${userHand} 相手:${cpuHand} → あなたの負け!`;
+                    result.classList.add("lose");
+
                 }
 
                 result.textContent = message;
